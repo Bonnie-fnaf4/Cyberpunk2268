@@ -6,7 +6,7 @@ public class IdleBehaviour : StateMachineBehaviour
 {
     float timer;
     Transform player;
-    float chaseRange = 10;
+    float chaseRange = 5;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -18,7 +18,7 @@ public class IdleBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer += Time.deltaTime;
-        if (timer > 5)
+        if (timer > 1)
             animator.SetBool("isPatrolling", true);
 
         float distance = Vector3.Distance(animator.transform.position, player.position);

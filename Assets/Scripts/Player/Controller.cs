@@ -32,7 +32,7 @@ public class Controller : MonoBehaviour
     [Header("Сила торможения во время движения")]
     public float dragOnSpeed = 10;
 
-    public bool isGrond = false;
+    public bool isGrond = false, isParkour = false;
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,12 +41,17 @@ public class Controller : MonoBehaviour
     private void Update()
     {
         CameraController();
-    }
-
-    void FixedUpdate()
-    {
-        PlayerController();
         Jump();
+        PlayerController();
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Time.timeScale = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void CameraController()
@@ -60,19 +65,21 @@ public class Controller : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrond)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+      if (Input.GetKey(KeyCode.Space))
+      {
+            if (isGrond || isParkour)
             {
                 rigidbody.drag = 0;
+                isGrond = false;
+                isParkour = false;
                 rigidbody.AddForce(new Vector3(0, speedJump, 0));
             }
-        }
+      }
     }
 
    public void PlayerController()
     {
-        if (isGrond)
+        if (isGrond || isParkour)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
@@ -84,22 +91,22 @@ public class Controller : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.W))
             {
-                rigidbody.AddForce(transform.forward * speedUP);
+                rigidbody.AddForce(transform.forward * speedUP * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                rigidbody.AddForce(transform.forward * -speedUP);
+                rigidbody.AddForce(transform.forward * -speedUP * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                rigidbody.AddForce(transform.right * -speedUP);
+                rigidbody.AddForce(transform.right * -speedUP * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                rigidbody.AddForce(transform.right * speedUP);
+                rigidbody.AddForce(transform.right * speedUP * Time.deltaTime);
             }
         }
         else
@@ -109,22 +116,22 @@ public class Controller : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W))
             {
-                rigidbody.AddForce(transform.forward * speedUPAir);
+                rigidbody.AddForce(transform.forward * speedUPAir * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                rigidbody.AddForce(transform.forward * -speedUPAir);
+                rigidbody.AddForce(transform.forward * -speedUPAir * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                rigidbody.AddForce(transform.right * -speedUPAir);
+                rigidbody.AddForce(transform.right * -speedUPAir * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                rigidbody.AddForce(transform.right * speedUPAir);
+                rigidbody.AddForce(transform.right * speedUPAir * Time.deltaTime);
             }
         }
 
@@ -202,11 +209,52 @@ public class Controller : MonoBehaviour
         //    }
         //}
     }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.other.tag == "Ground")
+        if (collision.other.tag == "Ground")
         {
+            isGrond = true;
+        }
+        if (collision.other.tag == "Parkour")
+        {
+            isParkour = true;
+        }
+    }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.other.tag == "Ground")
+        {
+            isGrond = false;
+        }
+        if (collision.other.tag == "Parkour")
+        {
+            isParkour = false;
+        }
+    }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "Ground")
+    //    {
+    //        isGrond = false;
+    //    }
+    //    if (other.tag == "Parkour")
+    //    {
+    //        isParkour = false;
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Ground")
+        {
+            isGrond = true;
+        }
+        if (other.tag == "Parkour")
+        {
+            isParkour = true;
         }
     }
 }
