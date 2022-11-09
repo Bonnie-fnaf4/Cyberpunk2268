@@ -14,6 +14,8 @@ public class AIManager : MonoBehaviour
     float timerToShoot = 0;
     public ShootAI shootAI;
 
+    public AIManager[] aimanagersFriends;
+
     bool isDead = false;
 
     private void Start()
@@ -40,6 +42,11 @@ public class AIManager : MonoBehaviour
             hp -= Random.Range(10, 25);
             animator.SetBool("isChasing", true);
             animator.SetBool("isPatrolling", false);
+            for(int i = 0; i < aimanagersFriends.Length; i++)
+            {
+                if(aimanagersFriends[i] != null)
+                aimanagersFriends[i].isChasingTrue();
+            }
         }
         if (hp <= 0)
         {
@@ -52,5 +59,11 @@ public class AIManager : MonoBehaviour
             isDead = true;
             Destroy(gameObject, 30);
         }
+    }
+
+    public void isChasingTrue()
+    {
+        animator.SetBool("isChasing", true);
+        animator.SetBool("isPatrolling", false);
     }
 }
