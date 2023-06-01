@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   tags:
   - Wall
   - Metal
@@ -17,6 +18,9 @@ TagManager:
   - Wood (Static)
   - Dirt (Static)
   - Wood
+=======
+  tags: []
+>>>>>>> parent of 152793c (version 0.12)
 =======
   tags: []
 >>>>>>> parent of 152793c (version 0.12)
