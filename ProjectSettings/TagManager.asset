@@ -3,6 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Wall
   - Metal
@@ -16,6 +17,9 @@ TagManager:
   - Wood (Static)
   - Dirt (Static)
   - Wood
+=======
+  tags: []
+>>>>>>> parent of 152793c (version 0.12)
   layers:
   - Default
   - TransparentFX
