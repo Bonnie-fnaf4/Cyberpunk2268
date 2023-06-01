@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackBehaviour : StateMachineBehaviour
 {
     Transform player;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -16,10 +17,11 @@ public class AttackBehaviour : StateMachineBehaviour
     {
         animator.transform.LookAt(player);
         float distance = Vector3.Distance(animator.transform.position, player.position);
+
         if (distance > 3)
             animator.SetBool("isAttacking", false);
 
-        if (distance > 15)
+        if (distance > 5)
             animator.SetBool("isChasing", false);
     }
 

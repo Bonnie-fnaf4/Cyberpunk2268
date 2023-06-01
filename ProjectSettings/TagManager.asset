@@ -3,27 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
   tags:
-  - Wall
-  - Metal
-  - Blood
-  - Dirt
-  - Concrete
-  - ExplosiveBarrel
-  - Target
-  - GasTank
-  - Metal (Static)
-  - Wood (Static)
-  - Dirt (Static)
-  - Wood
-=======
-  tags: []
->>>>>>> parent of 152793c (version 0.12)
-=======
-  tags: []
->>>>>>> parent of 152793c (version 0.12)
+  - Ground
+  - Parkour
+  - Enemy
+  - Bullet
+  - WayPoints
+  - BulletEnemy
   layers:
   - Default
   - TransparentFX
@@ -33,14 +19,14 @@ TagManager:
   - UI
   - 
   - 
-  - Wall
-  - First Person View
-  - Character
-  - Post Processing
-  - Post Processing Weapon
-  - Post Processing Scope
-  - Invisible Wall
-  - Projectile
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
